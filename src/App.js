@@ -5,7 +5,8 @@ import './App.css';
 function App() {
   return (
     <div className="app">
-     <h1>Hello world</h1>
+      <div className="app_heading">
+     <h1>COVID19-STATCAST</h1>
      {/* Material UI element  */}
      {/* Creates a form like box for list */}
      <FormControl className="app__dropdownbox">
@@ -19,6 +20,7 @@ function App() {
               <MenuItem value="worldwide">Nation</MenuItem>
             </Select>
           </FormControl>
+          </div> 
      {/* Heading */}
      {/* COVID19  Title*/}
 
