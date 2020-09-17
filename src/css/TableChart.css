@@ -1,0 +1,19 @@
+.tableChart {
+    margin-top: 20px;
+    overflow: scroll;
+    height: 400px;
+    color: #386d6a;
+}
+
+.tableChart tr:nth-of-type(odd) {
+    background-color: #E4F7F6;
+}
+
+.tableChart tr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tableChart td {
+    padding: 0.6rem;
+}

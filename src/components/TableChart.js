@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React from 'react';
+import '../css/TableChart.css';
 
 function TableChart({countries}) {
     return (
@@ -15,4 +15,4 @@ function TableChart({countries}) {
     )
 }
 
-export default TableChart
+export default TableChart;

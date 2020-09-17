@@ -3,7 +3,10 @@ import { MenuItem, Select, FormControl, Card, CardContent } from '@material-ui/c
 import StatBox from './components/StatBox';
 import TableChart from './components/TableChart';
 import MapChart from './components/MapChart';
+import LineGraph from './components/LineGraph';
+import 'leaflet/dist/leaflet.css';
 import './App.css';
+import { sortData } from './service';
 function App() {
   const [countries, setCountries] = useState(['']);
   // using state to have global stats the default on page 
@@ -13,6 +16,12 @@ function App() {
   // setting a state to make a table for data from api 
   const [tableData, setTableData] = useState([]);
   // this useEffect gets the info for global data fetching it from the url 
+  const [mapCenter, setMapCenter] = useState
+  // center of global
+  ({lat: 34.80746, lng: -40.4796})
+  const [mapZoom, setMapZoom] = useState(2);
+  const [mapCountries, setMapCountries] = useState([]);
+  
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
       .then((res) => res.json())
@@ -42,9 +51,11 @@ function App() {
             // this gives abbrev USA, CAN
             value: country.countryInfo.iso2,
           }));
-
+          const sortedData = sortData(data);
           setCountries(countries);
-          setTableData(data);
+          // sorted by cases from most to least from service.js
+          setTableData(sortedData);
+          setMapCountries(data);
         });
       };
       // caling async inside useEffect
@@ -70,6 +81,9 @@ const onCountryChange = async (e) => {
       setCountryInfo(countryCode);
       // all data from country json 
       setCountryInfo(data);
+      // below lets the zoom for the map to come when clicked nation is selected
+      setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+      setMapZoom(4);
     });
 
 };
@@ -110,18 +124,22 @@ return (
 
 
      {/* MAP */}
-     <MapChart/>
+     <MapChart
+      countries = {mapCountries}
+      center={mapCenter}
+      zoom={mapZoom}/>
     </div>
 
 
     {/* Right Side of page */}
     <Card className="app__rightside">
       <CardContent>
+         {/* Table */}
         <h3>Live Case by Nation</h3>
-        {/* Table */}
         <TableChart countries={tableData}/>
-
-        <h3>New cases by Global</h3>
+       {/* Graph */}
+        <h3>New cases Globally</h3>
+        <LineGraph/>
       </CardContent>
     </Card>
     </div>
