@@ -4,6 +4,8 @@ import './App.css';
 
 function App() {
   const [countries, setCountries] = useState(['']);
+  // using state to have global stats the default on page 
+  const [ country, setCountry] = useState(['global'])
   
   // code insidewill run once []
   useEffect(() => {
@@ -28,8 +30,10 @@ function App() {
     getCountriesData();
   }, []);
 
-
-
+// function for dropdown box every click on nation is will mapp to country code from api
+const onCountryChange = async (e) => {
+  const countryCode = e.target.value;
+}
   return (
     <div className="app">
       <div className="app__heading">
@@ -40,8 +44,10 @@ function App() {
             {/* Select shows droupdown with different attributes */}
             <Select
               variant="outlined"
-              value='zyz'
+              value={country}
+              onChange={onCountryChange}
             >
+              <MenuItem value="global">Global</MenuItem>
               {/* mapping through to get country name and value from useEffect */}
               {countries.map((country) => (
                 <MenuItem value={country.value}>{country.name}</MenuItem>
