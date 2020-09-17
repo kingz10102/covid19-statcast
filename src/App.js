@@ -33,7 +33,9 @@ function App() {
 // function for dropdown box every click on nation is will mapp to country code from api
 const onCountryChange = async (e) => {
   const countryCode = e.target.value;
-}
+
+  console.log('this is', countryCode);
+};
   return (
     <div className="app">
       <div className="app__heading">
