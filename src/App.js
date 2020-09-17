@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
-
-import { MenuItem, Select, FormControl } from '@material-ui/core';
+import { MenuItem, Select, FormControl, Card, CardContent } from '@material-ui/core';
 import StatBox from './components/StatBox';
 import './App.css';
+import MapChart from './components/MapChart';
 
 function App() {
   const [countries, setCountries] = useState(['']);
   // using state to have global stats the default on page 
-  const [ country, setCountry] = useState(['global'])
+  const [ country, setCountry] = useState(['global']);
+  // getting infro from indivudal country.
+  const [ countryInfro, setCountryInfo] = useState('');
   
   // code insidewill run once []
   useEffect(() => {
@@ -40,10 +42,22 @@ const onCountryChange = async (e) => {
 
   // country selected will stay on dropdown box
   setCountry(countryCode);
+
+  const urlSite = countryCode === 'global' ? "https://disease.sh/v3/covid-19/all"
+  : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+
+  // async the function with await
+    await fetch(urlSite)
+    .then(res => res.json())
+    .then(data => {
+
+    })
+
 };
   return (
     <div className="app">
-      <div className="app__heading">
+      <div className="app__leftside"> 
+        <div className="app__heading">
      <h1>COVID19-STATCAST</h1>
      {/* Material UI element  */}
      {/* Creates a form like box for list */}
@@ -71,6 +85,21 @@ const onCountryChange = async (e) => {
           {/* StatBoxs--> COVID19 deaths) */}
         <StatBox title="Mortalities"/>
      </div>
+
+
+     {/* MAP */}
+     <MapChart/>
+    </div>
+
+
+    {/* Right Side of page */}
+    <Card className="app__rightside">
+      <CardContent>
+        <h3>Live Case by Nation</h3>
+
+        <h3>New cases by Global</h3>
+      </CardContent>
+    </Card>
     </div>
   );
 }
