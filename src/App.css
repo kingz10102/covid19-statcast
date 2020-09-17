@@ -9,3 +9,8 @@
   margin-bottom: 18px;
 
 }
+.app__infostats {
+  display: flex;
+  /* separate boxes from each other */
+  justify-content: space-between;
+}

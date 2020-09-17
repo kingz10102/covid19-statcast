@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+
 import { MenuItem, Select, FormControl } from '@material-ui/core';
+import StatBox from './components/StatBox';
 import './App.css';
 
 function App() {
@@ -35,6 +37,9 @@ const onCountryChange = async (e) => {
   const countryCode = e.target.value;
 
   console.log('this is', countryCode);
+
+  // country selected will stay on dropdown box
+  setCountry(countryCode);
 };
   return (
     <div className="app">
@@ -57,9 +62,15 @@ const onCountryChange = async (e) => {
             </Select>
           </FormControl>
           </div> 
-     {/* Heading */}
-     {/* COVID19  Title*/}
-
+     
+     <div className="app__infostats">
+         {/* StatBoxs--> COVID19 cases) */}
+        <StatBox title="Confirmed COVID-19 Cases"/>
+         {/* StatBoxs--> COVID19 recoveries) */}
+        <StatBox title="Recoveries"/>
+          {/* StatBoxs--> COVID19 deaths) */}
+        <StatBox title="Mortalities"/>
+     </div>
     </div>
   );
 }
