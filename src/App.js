@@ -1,16 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { MenuItem, Select, FormControl, Card, CardContent } from '@material-ui/core';
 import StatBox from './components/StatBox';
-import './App.css';
+import TableChart from './components/TableChart';
 import MapChart from './components/MapChart';
-
+import './App.css';
 function App() {
   const [countries, setCountries] = useState(['']);
   // using state to have global stats the default on page 
   const [ country, setCountry] = useState(['global']);
-  // getting infro from indivudal country.
-  const [ countryInfro, setCountryInfo] = useState('');
-  
+  // getting info from indivudal country.
+  const [ countryInfo, setCountryInfo] = useState({});
+  // setting a state to make a table for data from api 
+  const [tableData, setTableData] = useState([]);
+  // this useEffect gets the info for global data fetching it from the url 
+  useEffect(() => {
+    fetch("https://disease.sh/v3/covid-19/all")
+      .then((res) => res.json())
+      .then((data) => {
+        setCountryInfo(data);
+      });
+  }, []);
+
+
+
+
+
+
   // code insidewill run once []
   useEffect(() => {
     // usinf asyns to send a request
@@ -27,7 +42,9 @@ function App() {
             // this gives abbrev USA, CAN
             value: country.countryInfo.iso2,
           }));
+
           setCountries(countries);
+          setTableData(data);
         });
       };
       // caling async inside useEffect
@@ -38,7 +55,7 @@ function App() {
 const onCountryChange = async (e) => {
   const countryCode = e.target.value;
 
-  console.log('this is', countryCode);
+  // console.log('this is', countryCode);
 
   // country selected will stay on dropdown box
   setCountry(countryCode);
@@ -50,11 +67,16 @@ const onCountryChange = async (e) => {
     await fetch(urlSite)
     .then(res => res.json())
     .then(data => {
-
-    })
+      setCountryInfo(countryCode);
+      // all data from country json 
+      setCountryInfo(data);
+    });
 
 };
-  return (
+
+console.log('Country info data', countryInfo);
+  
+return (
     <div className="app">
       <div className="app__leftside"> 
         <div className="app__heading">
@@ -79,11 +101,11 @@ const onCountryChange = async (e) => {
      
      <div className="app__infostats">
          {/* StatBoxs--> COVID19 cases) */}
-        <StatBox title="Confirmed COVID-19 Cases"/>
+      <StatBox title="Confirmed COVID-19 Cases" cases= {countryInfo.todayCases} total={countryInfo.cases}/>
          {/* StatBoxs--> COVID19 recoveries) */}
-        <StatBox title="Recoveries"/>
+        <StatBox title="Recoveries" cases= {countryInfo.todayRecovered} total={countryInfo.recovered}/>
           {/* StatBoxs--> COVID19 deaths) */}
-        <StatBox title="Mortalities"/>
+        <StatBox title="Mortalities" cases= {countryInfo.todayDeaths} total={countryInfo.deaths}/>
      </div>
 
 
@@ -96,6 +118,8 @@ const onCountryChange = async (e) => {
     <Card className="app__rightside">
       <CardContent>
         <h3>Live Case by Nation</h3>
+        {/* Table */}
+        <TableChart countries={tableData}/>
 
         <h3>New cases by Global</h3>
       </CardContent>
