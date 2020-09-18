@@ -125,6 +125,7 @@ return (
      <div className="app__infostats">
          {/* StatBoxs--> COVID19 cases) */}
       <StatBox 
+        className='statBox-title'
         isYellow
         active={casesType === "cases"}
         onClick={(event) => setCasesType('cases')}
@@ -133,6 +134,7 @@ return (
         total={niceStyleStat(countryInfo.cases)}/>
          {/* StatBoxs--> COVID19 recoveries) */}
         <StatBox 
+        className='statBox-title'
         active={casesType === "recovered"}
         onClick={(event) => setCasesType('recovered')}
         title="Recoveries" 
@@ -140,6 +142,7 @@ return (
         total={niceStyleStat(countryInfo.recovered)}/>
           {/* StatBoxs--> COVID19 deaths) */}
         <StatBox 
+        className='statBox-title'
         isRed
         active={casesType === "deaths"}
         onClick={(event) => setCasesType('deaths')}

@@ -22,6 +22,7 @@
   display: flex;
   padding: 20px;
   justify-content: space-evenly;
+  font-family: 'Luckiest Guy', cursive;
 }
 .app__heading {
   display: flex;
@@ -34,36 +35,39 @@
   display: flex;
   /* separate boxes from each other */
   justify-content: space-between;
+  font-family: 'Luckiest Guy', cursive;
 }
 
 .app__leftside {
   flex: 0.9;
+  
 }
 
 .card-div {
   display: flex;
   justify-content: space-between;
   padding-top: 15px;
+ 
 }
 
 .app__rightside {
   display: flex;
   flex-direction: column;
+  font-family: 'Luckiest Guy', cursive;
 
 }
 .app__rightside .MuiCardContent-root {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  font-family: 'Luckiest Guy', cursive;
 }
 
 .app__graph {
   flex-grow:0.2;
+  
 }
 .card {
   margin: 12px;
-}
-
-.card-head {
-  font-family: 'Luckiest Guy', cursive;
+  
 }
