@@ -51,7 +51,7 @@ scales: {
 
 
 
-  function LineGraph({casesType = 'cases'}) {
+  function LineGraph({casesType = 'cases', ...props}) {
     const [data, setData] = useState({});
     
     const buildChartData = (data, casesType='cases') => {
@@ -89,7 +89,7 @@ scales: {
 
     
     return (
-        <div>
+        <div className={props.className}>
            {data?.length > 0 && (
         <Line
           data={{
@@ -104,7 +104,6 @@ scales: {
           options={options} 
           />
           )}
-            <h1>I am the line graph</h1>
         </div>
     )
 }

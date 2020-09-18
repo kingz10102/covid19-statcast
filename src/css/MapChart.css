@@ -11,3 +11,28 @@
     height: 100%;
 
 }
+.info-FlagNation img {
+    width: 100px;
+    border-radius: 6px;
+}
+.info-NationName {
+    font-size: 22px;
+    font-weight: bolder;
+    color: rgb(179, 142, 88);
+}
+.info-FlagNation {
+    height: 82px;
+    width: 100%;
+    background-size: cover;
+    border-radius: 8px;
+}
+.info-Container {
+    width: 151px;
+}
+
+.info-NationConfirmed,
+.info-NationRecovered,
+.info-NationDeaths {
+    font-size: 15px;
+    margin-top: 6px;
+}

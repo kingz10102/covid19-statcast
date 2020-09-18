@@ -1,5 +1,6 @@
 import React from 'react';
 import '../css/TableChart.css';
+import numeral from 'numeral';
 
 function TableChart({countries}) {
     return (
@@ -8,7 +9,7 @@ function TableChart({countries}) {
             {countries.map(({country, cases}) => (
                 <tr>
                     <td><em>{country}</em></td>
-                    <td><strong>{cases}</strong></td>
+                    <td><strong>{numeral(cases).format(',')}</strong></td>
                 </tr>
             ))}
         </div>

@@ -1,10 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
 * {
   margin: 0;
+}
+
+.title-name{
+  font-family: 'Luckiest Guy', cursive;
+  letter-spacing: 3px;
+  color: #454545;
+  display:flex;
+  justify-items: center;
 }
 /* making application device (mobile) responsive */
 @media (max-width: 990px) {
   .app {
     flex-direction: column;
+
   }
 }
 .app {
@@ -27,4 +38,32 @@
 
 .app__leftside {
   flex: 0.9;
+}
+
+.card-div {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+}
+
+.app__rightside {
+  display: flex;
+  flex-direction: column;
+
+}
+.app__rightside .MuiCardContent-root {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.app__graph {
+  flex-grow:0.2;
+}
+.card {
+  margin: 12px;
+}
+
+.card-head {
+  font-family: 'Luckiest Guy', cursive;
 }
